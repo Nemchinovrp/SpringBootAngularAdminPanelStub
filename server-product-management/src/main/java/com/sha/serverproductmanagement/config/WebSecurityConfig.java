@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -27,7 +27,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -37,7 +37,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
-                .antMatchers("/resources/**",  "/error", "/api/user/**").permitAll()
+                .antMatchers("/resources/**", "/error", "/api/user/**").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 //All remaining paths should need authentication.
@@ -56,9 +56,8 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
 
         //jwt filter
-        http.addFilter(new JWTAuthorizationFilter(authenticationManager(),jwtTokenProvider));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtTokenProvider));
     }
-
 
 
     @Override
@@ -68,7 +67,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 
     //Cross origin resource sharing.
     @Bean
-    public WebMvcConfigurer corsConfigurer(){
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

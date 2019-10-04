@@ -34,48 +34,49 @@ public class AdminController {
 
     //This can be also @DeleteMapping.
     @PostMapping("/api/admin/user-delete")
-    public ResponseEntity<?> deleteUser(@RequestBody User user){
+    public ResponseEntity<?> deleteUser(@RequestBody User user) {
         userService.deleteUser(user.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/api/admin/user-all")
-    public ResponseEntity<?> findAllUsers(){
+    public ResponseEntity<?> findAllUsers() {
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/api/admin/user-number")
-    public ResponseEntity<?> numberOfUsers(){
+    public ResponseEntity<?> numberOfUsers() {
         Long number = userService.numberOfUsers();
         StringResponse response = new StringResponse();
         response.setResponse(number.toString());
         //to return it, we will use String Response because long is not a suitable response for rest api
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
     @PostMapping("/api/admin/product-create")
-    public ResponseEntity<?> createProduct(@RequestBody Product product){
+    public ResponseEntity<?> createProduct(@RequestBody Product product) {
         return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
     }
 
     @PutMapping("/api/admin/product-update")
-    public ResponseEntity<?> updateProduct(@RequestBody Product product){
+    public ResponseEntity<?> updateProduct(@RequestBody Product product) {
         return new ResponseEntity<>(productService.updateProduct(product), HttpStatus.CREATED);
     }
 
     //This can be also @DeleteMapping.
     @PostMapping("/api/admin/product-delete")
-    public ResponseEntity<?> deleteProduct(@RequestBody Product product){
+    public ResponseEntity<?> deleteProduct(@RequestBody Product product) {
         productService.deleteProduct(product.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/api/admin/product-all")
-    public ResponseEntity<?> findAllProducts(){
+    public ResponseEntity<?> findAllProducts() {
         return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/api/admin/product-number")
-    public ResponseEntity<?> numberOfProducts(){
+    public ResponseEntity<?> numberOfProducts() {
         Long number = productService.numberOfProducts();
         StringResponse response = new StringResponse();
         response.setResponse(number.toString());
@@ -83,12 +84,12 @@ public class AdminController {
     }
 
     @GetMapping("/api/admin/transaction-all")
-    public ResponseEntity<?> findAllTransactions(){
+    public ResponseEntity<?> findAllTransactions() {
         return new ResponseEntity<>(transactionService.findAllTransactions(), HttpStatus.OK);
     }
 
     @GetMapping("api/admin/transaction-number")
-    public ResponseEntity<?> numberOfTransactions(){
+    public ResponseEntity<?> numberOfTransactions() {
         Long number = transactionService.numberOfTransactions();
         StringResponse response = new StringResponse();
         response.setResponse(number.toString());
